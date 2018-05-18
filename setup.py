@@ -9,18 +9,17 @@ with open('README.rst') as readme_file:
 with open('HISTORY.rst') as history_file:
     history = history_file.read()
 
-requirements = [
+requires = [
     'schematics',
     'jsonschema'
 ]
 
-test_requirements = [
-    'flake8==2.6.0',
-    'tox == 2.3.1',
-    'coverage == 4.1',
-    'Sphinx == 1.4.8',
-    'schematics == 1.1.1',
-    'jsonschema',
+test_requires = requires + [
+    'schematics==1.1.1',
+    'flake8',
+    'tox',
+    'coverage',
+    'Sphinx',
     'mock'
 ]
 
@@ -38,7 +37,7 @@ setup(
     package_dir={'schematics_flexible':
                  'schematics_flexible'},
     include_package_data=True,
-    install_requires=requirements,
+    install_requires=requires,
     license="Apache Software License 2.0",
     zip_safe=False,
     keywords='schematics_flexible',
@@ -56,5 +55,6 @@ setup(
         'Programming Language :: Python :: 3.5',
     ],
     test_suite='tests',
-    tests_require=test_requirements
+    tests_require=test_requires,
+    extras_require={'test': test_requires},
 )
