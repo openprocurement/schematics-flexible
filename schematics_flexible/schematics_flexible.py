@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 
 from schematics.types import StringType
-from schematics.types.compound import DictType, BaseType
-from schematics.models import Model, ModelType
+from schematics.types.compound import DictType, BaseType, ModelType
+from schematics.models import Model
 from schematics.exceptions import ValidationError as schematicsValidationError
 
 
@@ -19,9 +19,9 @@ class BaseFlexible(Model):
     properties = DictType(BaseType, default=dict)
 
     def __init__(self, raw_data=None, deserialize_mapping=None,
-                 strict=True, store_handler=None):
+                 strict=True, store_handler=None, context=None):
         super(BaseFlexible, self).__init__(
-            raw_data, deserialize_mapping, strict)
+            raw_data=raw_data, deserialize_mapping=deserialize_mapping, strict=strict)
         if store_handler:
             self._schema_source = store_handler
 
@@ -57,4 +57,4 @@ class FlexibleModelType(ModelType):
             """ model for storing flexible fields  """
             _schema_source = schema_source
 
-        super(FlexibleModelType, self).__init__(model_class=Flexible, **kwargs)
+        super(FlexibleModelType, self).__init__(model_spec=Flexible, **kwargs)
