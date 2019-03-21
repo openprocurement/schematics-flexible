@@ -11,7 +11,7 @@ with open('HISTORY.rst') as history_file:
 
 requires = [
     'schematics',
-    'jsonschema'
+    'jsonschema==2.6.0'
 ]
 
 test_requires = requires + [
